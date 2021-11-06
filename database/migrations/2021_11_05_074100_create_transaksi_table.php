@@ -21,7 +21,6 @@ class CreateTransaksiTable extends Migration
             $table->datetime('tanggal_kembali')->nullable();
             $table->boolean('status_pinjam');
             $table->decimal('total_biaya', 12, 2);
-            $table->timestamps();
         });
     }
 
