@@ -22,7 +22,6 @@ class CreateMahasiswaTable extends Migration
             $table->string('prodi');
             $table->string('jurusan');
             $table->string('fakultas');
-            $table->timestamps();
         });
     }
 

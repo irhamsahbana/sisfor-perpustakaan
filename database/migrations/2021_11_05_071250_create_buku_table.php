@@ -23,7 +23,6 @@ class CreateBukuTable extends Migration
             $table->string('isbn');
             $table->integer('stok_buku');
             $table->decimal('biaya_sewa_harian',$precision = 12, $scale = 2);
-            $table->timestamps();
         });
     }
 
