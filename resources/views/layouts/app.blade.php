@@ -99,5 +99,6 @@
 
 @include('layouts.footer')
 @include('layouts.toast-message')
+@stack('js')
 </body>
 </html>
