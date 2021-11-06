@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,8 @@ Route::get('/manajemen-buku', [BukuController::class, 'index'])->name('buku.cont
 Route::post('/manajemen-buku/create', [BukuController::class, 'create'])->name('buku.create');
 Route::put('/manajemen-buku/update/{id}', [BukuController::class, 'update'])->name('buku.update');
 Route::delete('/manajemen-buku/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
+
+Route::get('/manajemen-transaksi', [TransaksiController::class, 'index'])->name('transaksi.content');
+Route::post('/manajemen-transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+Route::put('/manajemen-transaksi/update/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+Route::delete('/manajemen-transaksi/delete/{id}', [TransaksiController::class, 'delete'])->name('transaksi.delete');

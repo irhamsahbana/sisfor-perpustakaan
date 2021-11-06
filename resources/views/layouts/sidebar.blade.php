@@ -47,7 +47,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="pages/kanban.html" class="nav-link">
+        <a href="{{ route('transaksi.content') }}" class="nav-link {{ (request()->routeIs('transaksi.*')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-columns"></i>
           <p>
             Transaksi
