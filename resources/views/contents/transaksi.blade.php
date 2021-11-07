@@ -38,11 +38,13 @@
                       <td>{{ $t->tanggal_pinjam }}</td>
                       <td>{{ $t->tanggal_kembali}}</td>
                       <td>@if($t->status_pinjam == 0) Dipinjam @elseif($t->status_pinjam == 1) Dikembalikan @endif </td>
-                      <td>{{ $t->total_biaya }}</td>
+                      <td>{{ number_format($t->total_biaya, 2) }}</td>
                       <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-update{{ $t->id }}">Sunting</button>
+                        @if($t->status_pinjam != 1)
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-update{{ $t->id }}">Sunting</button>
+                        @endif
                         @if($t->status_pinjam != 0 )
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete{{ $t->id }}">Hapus</button>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete{{ $t->id }}">Hapus</button>
                         @endif
                       </td>
                     </tr>
@@ -92,8 +94,9 @@
                 <label for="nama" class="col-sm-2 col-form-label">Nama Mahasiswa</label>
                 <div class="col-sm-10">
                   <select class="form-control" name="id_mahasiswa">
+                    <option value="">-- Pilih Salah satu --</option>
                     @foreach($mahasiswa as $mhs)
-                      <option value="{{ $mhs->id }}">{{ $mhs->nama }}</option>
+                      <option value="{{ $mhs->id }}" {{ old('id_mahasiswa') == $mhs->id ? "selected":""}}>{{ $mhs->nama }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -103,8 +106,9 @@
                 <label for="judul_buku" class="col-sm-2 col-form-label">Judul Buku</label>
                 <div class="col-sm-10">
                   <select class="form-control" name="id_buku">
+                    <option value="">-- Pilih Salah satu --</option>
                     @foreach($buku as $b)
-                      <option value="{{ $b->id }}">{{ $b->judul_buku }}</option>
+                      <option value="{{ $b->id }}" {{ old('id_buku') == $b->id ? "selected":""}}>{{ $b->judul_buku }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -145,12 +149,12 @@
                 </div>
               </div>
               
-              <div class="form-group row">
+              {{-- <div class="form-group row">
                 <label for="total_biaya" class="col-sm-2 col-form-label">Total Biaya</label>
                 <div class="col-sm-10">
                   <input type="number" id="total_biaya" name="total_biaya" class="form-control" value="0" readonly>
                 </div>
-              </div>
+              </div> --}}
             
             {{-- </div> --}}
           </div>
@@ -219,7 +223,7 @@
                     <div class="col-sm-10">
                       <select class="form-control" name="id_mahasiswa">
                         @foreach($mahasiswa as $mhs)
-                          <option value="{{ $mhs->id }}">{{ $mhs->nama }}</option>
+                          <option value="{{ $mhs->id }}" @if($mhs->id == $t->id_mahasiswa) selected  @endif>{{ $mhs->nama }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -230,7 +234,7 @@
                     <div class="col-sm-10">
                       <select class="form-control" name="id_buku">
                         @foreach($buku as $b)
-                          <option value="{{ $b->id }}">{{ $b->judul_buku }}</option>
+                          <option value="{{ $b->id }}" @if($b->id == $t->id_buku) selected @endif>{{ $b->judul_buku }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -252,9 +256,9 @@
                   <div class="form-group row">
                     <label for="tanggal_kembali" class="col-sm-2 col-form-label">Tanggal Kembali</label>
                     <div class="col-sm-10">
-                      <div class="input-group date" id="tanggal_kembali" data-target-input="nearest">
-                        <input type="text" name="tanggal_pinjam" class="form-control datetimepicker-input" data-target="#tanggal_kembali"/>
-                        <div class="input-group-append" data-target="#tanggal_kembali" data-toggle="datetimepicker">
+                      <div class="input-group date tanggal_kembali" data-target-input="nearest">
+                        <input type="text" name="tanggal_kembali" class="form-control datetimepicker-input" data-target=".tanggal_kembali"/>
+                        <div class="input-group-append" data-target=".tanggal_kembali" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                       </div>
@@ -271,12 +275,12 @@
                     </div>
                   </div>
                   
-                  <div class="form-group row">
+                  {{-- <div class="form-group row">
                     <label for="total_biaya" class="col-sm-2 col-form-label">Total Biaya</label>
                     <div class="col-sm-10">
                       <input type="number" id="total_biaya" name="total_biaya" class="form-control" value="0" readonly>
                     </div>
-                  </div>
+                  </div> --}}
                 
               {{-- </div> --}}
             </div>
@@ -301,6 +305,6 @@
 <script src="{{ asset('template') }}/plugins/daterangepicker/daterangepicker.js"></script>
 <script>
   $('#tanggal_pinjam').datetimepicker({ icons: { time: 'far fa-clock' } })
-  $('#tanggal_kembali').datetimepicker({ icons: { time: 'far fa-clock' } })
+  $('.tanggal_kembali').datetimepicker({ icons: { time: 'far fa-clock' } })
 </script>
 @endpush
