@@ -16,7 +16,7 @@ class BukuController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'judul_buku' => 'required|string',
+            'judul_buku' => 'required',
             'pengarang' => 'required',
             'penerbit' => 'required|string|max:255',
             'tahun_terbit' => 'required|date',
@@ -26,7 +26,15 @@ class BukuController extends Controller
             'biaya_sewa_harian' => 'required|numeric',
         ], [
             'judul_buku.required' => 'Judul buku tidak boleh kosong.',
-            'judul_buku.string' => 'Nama tidak boleh mengandung angka.',
+            'pengarang.required' => 'Pengarang tidak boleh kosong.',
+            'penerbit.required' => 'Penerbit tidak boleh kosong.',
+            'tahun_terbit.required' => 'Pengarang tidak boleh kosong.',
+            'tebal.required' => 'Tebal tidak boleh kosong.',
+            'isbn.required' => 'ISBN tidak boleh kosong.',
+            'stok_buku.required' => 'Stok Buku tidak boleh kosong.',
+            'stok_buku.integer' => 'Stok Buku harus angka.',
+            'biaya_sewa_harian.required' => 'Biaya Sewa Harian tidak boleh kosong.',
+            'biaya_sewa_harian.numeric' => 'Biaya Sewa Harian harus angka.',
            
         ]);
 
@@ -62,7 +70,15 @@ class BukuController extends Controller
 
         ], [
             'judul_buku.required' => 'Judul buku tidak boleh kosong.',
-            'judul_buku.string' => 'Nama tidak boleh mengandung angka.',
+            'pengarang.required' => 'Pengarang tidak boleh kosong.',
+            'penerbit.required' => 'Penerbit tidak boleh kosong.',
+            'tahun_terbit.required' => 'Pengarang tidak boleh kosong.',
+            'tebal.required' => 'Tebal tidak boleh kosong.',
+            'isbn.required' => 'ISBN tidak boleh kosong.',
+            'stok_buku.required' => 'Stok Buku tidak boleh kosong.',
+            'stok_buku.integer' => 'Stok Buku harus angka.',
+            'biaya_sewa_harian.required' => 'Biaya Sewa Harian tidak boleh kosong.',
+            'biaya_sewa_harian.numeric' => 'Biaya Sewa Harian harus angka.',
         ]);
 
         DB::table('buku')->where('id', $id)->update([

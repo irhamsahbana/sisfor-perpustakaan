@@ -27,6 +27,21 @@ class MahasiswaController extends Controller
             'nama.required' => 'Nama tidak boleh kosong.',
             'nama.string' => 'Nama tidak boleh mengandung angka.',
             'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+            'nim.required' => 'NIM tidak boleg kosong.',
+            'nim.max' => 'NIM tidak boleh lebih dari 15 karakter.',
+            'nim.unique' => 'NIM tidak boleh sama.',
+            'email.required' => 'Email tidak boleg kosong.',
+            'email.unique' => 'Email tidak boleh sama.',
+            'email.dns' => 'Email harus mengandung @gmail.com.',
+            'no_telp.required' => 'No Telpon tidak boleh kosong.',
+            'no_telp.max' => 'No Telpon tidak boleh lebih dari 15 karakter.',
+            'prodi.required' => 'Prodi tidak boleh kosong.',
+            'prodi.max' => 'Prodi tidak boleh lebih dari 255 karakter.',
+            'jurusan.required' => 'Jurusan tidak boleh kosong.',
+            'jurusan.max' => 'Jurusan tidak boleh lebih dari 255 karakter.',
+            'fakultas.required' => 'Fakultas tidak boleh kosong.',
+            'fakultas.max' => 'Fakultas tidak boleh lebih dari 255 karakter.',
+
         ]);
 
         DB::table('mahasiswa')->insert([
@@ -60,6 +75,20 @@ class MahasiswaController extends Controller
             'nama.required' => 'Nama tidak boleh kosong.',
             'nama.string' => 'Nama tidak boleh mengandung angka.',
             'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+            'nim.required' => 'NIM tidak boleg kosong.',
+            'nim.max' => 'NIM tidak boleh lebih dari 15 karakter.',
+            'nim.unique' => 'NIM tidak boleh sama.',
+            'email.required' => 'Email tidak boleg kosong.',
+            'email.unique' => 'Email tidak boleh sama.',
+            'email.dns' => 'Email harus mengandung @gmail.com.',
+            'no_telp.required' => 'No Telpon tidak boleh kosong.',
+            'no_telp.max' => 'No Telpon tidak boleh lebih dari 15 karakter.',
+            'prodi.required' => 'Prodi tidak boleh kosong.',
+            'prodi.max' => 'Prodi tidak boleh lebih dari 255 karakter.',
+            'jurusan.required' => 'Jurusan tidak boleh kosong.',
+            'jurusan.max' => 'Jurusan tidak boleh lebih dari 255 karakter.',
+            'fakultas.required' => 'Fakultas tidak boleh kosong.',
+            'fakultas.max' => 'Fakultas tidak boleh lebih dari 255 karakter.',
         ]);
 
         DB::table('mahasiswa')->where('id', $id)->update([

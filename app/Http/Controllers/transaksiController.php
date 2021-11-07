@@ -30,9 +30,9 @@ class TransaksiController extends Controller
             'status_pinjam' => 'required',
             'total_biaya' => 'required',
         ], [
-            'nama.required' => 'Nama tidak boleh kosong.',
-            'nama.string' => 'Nama tidak boleh mengandung angka.',
-            'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+            'tanggal_pinjam.required' => 'Tanggal pinjam tidak boleh kosong.',
+            'status_pinjam.required' => 'Status pinjam tidak boleh kosong.',
+            'total_biaya.required' => 'Total Biaya tidak boleh kosong.',
         ]);
 
         $date = date_create($request->tanggal_pinjam);
@@ -66,9 +66,9 @@ class TransaksiController extends Controller
             'status_pinjam' => 'required',
             'total_biaya' => 'required',
         ], [
-            'nama.required' => 'Nama tidak boleh kosong.',
-            'nama.string' => 'Nama tidak boleh mengandung angka.',
-            'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+            'tanggal_pinjam.required' => 'Tanggal pinjam tidak boleh kosong.',
+            'status_pinjam.required' => 'Status pinjam tidak boleh kosong.',
+            'total_biaya.required' => 'Total Biaya tidak boleh kosong.',
         ]);
 
         DB::table('transaksi')->where('id', $id)->update([

@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@section('title','MAHASISWA')
 @section('content')
+  <!-- SECTION TAMPIL DATA START -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -72,9 +73,11 @@
     </div>
     <!-- /.container-fluid -->
   </section>
+  <!-- SECTION TAMPIL DATA END -->
 
+  <!-- FORM TAMBAH DATA START -->
   <div class="modal fade" id="modal-create">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Tambah Data Mahasiswa</h4>
@@ -103,14 +106,24 @@
               <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                  <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
+                  </div>
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="no_telp" class="col-sm-2 col-form-label">Nomor Telpon</label>
                 <div class="col-sm-10">
-                  <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ old('no_telp') }}">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="number" id="no_telp" name="no_telp" class="form-control" value="{{ old('no_telp') }}">
+                  </div>
                 </div>
               </div>
               
@@ -147,7 +160,9 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+  <!-- FORM TAMBAH DATA END -->
 
+  <!-- FORM HAPUS DATA START -->
   @foreach ($mahasiswa as $mhs)
     <div class="modal fade" id="modal-delete{{ $mhs->id }}">
       <div class="modal-dialog">
@@ -176,10 +191,12 @@
     </div>
     <!-- /.modal -->
   @endforeach
+  <!-- FORM HAPUS DATA END -->
 
+  <!-- FORM UPDATE DATA START -->
   @foreach($mahasiswa as $mhs)
     <div class="modal fade" id="modal-update{{ $mhs->id }}">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Sunting Data Mahasiswa</h4>
@@ -209,14 +226,24 @@
                 <div class="form-group row">
                   <label for="email" class="col-sm-2 col-form-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="text" id="email" name="email" class="form-control" value="{{ $mhs->email }}">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                      </div>
+                      <input type="text" id="email" name="email" class="form-control" value="{{ $mhs->email }}">
+                    </div>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="no_telp" class="col-sm-2 col-form-label">Nomor Telpon</label>
                   <div class="col-sm-10">
-                    <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $mhs->no_telp }}">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                      </div>
+                      <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $mhs->no_telp }}">
+                    </div>
                   </div>
                 </div>
                 
@@ -254,6 +281,7 @@
     </div>
     <!-- /.modal -->
   @endforeach
+  <!-- FORM UPDATE DATA END -->
 
 
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@section('title','TRANSAKSI')
 @section('content')
+  <!-- SECTION TAMPIL DATA START -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -71,9 +72,11 @@
     </div>
     <!-- /.container-fluid -->
   </section>
+  <!-- SECTION TAMPIL DATA END -->
 
+  <!-- TAMBAH DATA START -->
   <div class="modal fade" id="modal-create">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Tambah Data Transaksi</h4>
@@ -133,7 +136,7 @@
               </div> --}}
               
               <div class="form-group row">
-                <label for="status_pinjam" class="col-sm-2 col-form-label">status_pinjam</label>
+                <label for="status_pinjam" class="col-sm-2 col-form-label">Status Pinjam</label>
                 <div class="col-sm-10">
                   <select class="form-control" name="status_pinjam" readonly>
                     <option value="0" selected>Dipinjam</option>
@@ -162,7 +165,9 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+  <!-- TAMBAH DATA END -->
 
+  <!-- HAPUS DATA START -->
   @foreach ($transaksi as $t)
     <div class="modal fade" id="modal-delete{{ $t->id }}">
       <div class="modal-dialog">
@@ -191,13 +196,15 @@
     </div>
     <!-- /.modal -->
   @endforeach
-
+  <!-- HAPUS DATA END -->
+  
+  <!-- UPDATE DATA START -->
   @foreach($transaksi as $t)
     <div class="modal fade" id="modal-update{{ $t->id }}">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Sunting Data Transaksu</h4>
+            <h4 class="modal-title">Sunting Data Transaksi</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -208,47 +215,68 @@
             <div class="modal-body">
               {{-- <div class="card-body"> --}}
                 <div class="form-group row">
-                  <label for="nama" class="col-sm-2 col-form-label">Nama Mahasiswa</label>
-                  <div class="col-sm-10">
-                    <select name="nama" id="nama"></select>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="judul_buku" class="col-sm-2 col-form-label">Judul Buku</label>
-                  <div class="col-sm-10">
-                    <select name="judul_buku" id="judul_buku"></select>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="tanggal_pinjam" class="col-sm-2 col-form-label">Tanggal Pinjam</label>
-                  <div class="col-sm-10">
-                    <input type="datetime" id="tanggal_pinjam" name="tanggal_pinjam" class="form-control" value="{{ $t->tanggal_pinjam }}">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="tanggal_kembali" class="col-sm-2 col-form-label">Tanggal Kembali</label>
+                    <label for="nama" class="col-sm-2 col-form-label">Nama Mahasiswa</label>
                     <div class="col-sm-10">
-                      <input type="datetime" id="tanggal_kembali" name="tanggal_kembali" class="form-control" value="{{ $t->tanggal_kembali }}">
+                      <select class="form-control" name="id_mahasiswa">
+                        @foreach($mahasiswa as $mhs)
+                          <option value="{{ $mhs->id }}">{{ $mhs->nama }}</option>
+                        @endforeach
+                      </select>
                     </div>
                   </div>
-                
-                <div class="form-group row">
-                  <label for="status_pinjam" class="col-sm-2 col-form-label">status_pinjam</label>
-                  <div class="col-sm-10">
-                    <select name="status_pinjam" id="status_pinjam"></select>
+    
+                  <div class="form-group row">
+                    <label for="judul_buku" class="col-sm-2 col-form-label">Judul Buku</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" name="id_buku">
+                        @foreach($buku as $b)
+                          <option value="{{ $b->id }}">{{ $b->judul_buku }}</option>
+                        @endforeach
+                      </select>
+                    </div>
                   </div>
-                </div>
-                
-                <div class="form-group row">
-                  <label for="total_biaya" class="col-sm-2 col-form-label">total_biaya</label>
-                  <div class="col-sm-10">
-                    <input type="number" id="total_biaya" name="total_biaya" class="form-control" value="{{ $t->total_biaya }}">
+    
+                  <div class="form-group row">
+                    <label for="tanggal_pinjam" class="col-sm-2 col-form-label">Tanggal Pinjam</label>
+                    <div class="col-sm-10">
+                      <div class="input-group date" id="tanggal_pinjam" data-target-input="nearest">
+                          <input type="text" name="tanggal_pinjam" class="form-control datetimepicker-input" data-target="#tanggal_pinjam" value="{{ $t->tanggal_pinjam }}" readonly/>
+                          <div class="input-group-append" data-target="#tanggal_pinjam" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                      {{-- <input type="text" id="tanggal_pinjam" name="tanggal_pinjam" class="form-control datetimepicker-input" data-target="#reservationdatetime"> --}}
+                    </div>
                   </div>
-                </div>
-                
+    
+                  <div class="form-group row">
+                    <label for="tanggal_kembali" class="col-sm-2 col-form-label">Tanggal Kembali</label>
+                    <div class="col-sm-10">
+                      <div class="input-group date" id="tanggal_kembali" data-target-input="nearest">
+                        <input type="text" name="tanggal_pinjam" class="form-control datetimepicker-input" data-target="#tanggal_kembali"/>
+                        <div class="input-group-append" data-target="#tanggal_kembali" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="status_pinjam" class="col-sm-2 col-form-label">Status Pinjam</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" name="status_pinjam" >
+                        <option value="0" selected>Dipinjam</option>
+                        <option value="1">Dikembalikan</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="total_biaya" class="col-sm-2 col-form-label">Total Biaya</label>
+                    <div class="col-sm-10">
+                      <input type="number" id="total_biaya" name="total_biaya" class="form-control" value="0" readonly>
+                    </div>
+                  </div>
                 
               {{-- </div> --}}
             </div>
@@ -264,7 +292,7 @@
     </div>
     <!-- /.modal -->
   @endforeach
-
+  <!-- UPDATE DATA END -->
 
 @endsection
 
@@ -273,6 +301,6 @@
 <script src="{{ asset('template') }}/plugins/daterangepicker/daterangepicker.js"></script>
 <script>
   $('#tanggal_pinjam').datetimepicker({ icons: { time: 'far fa-clock' } })
-  // $('#tanggal_kembali').datetimepicker({ icons: { time: 'far fa-clock' } })
+  $('#tanggal_kembali').datetimepicker({ icons: { time: 'far fa-clock' } })
 </script>
 @endpush

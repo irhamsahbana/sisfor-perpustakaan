@@ -1,6 +1,8 @@
 @extends('layouts.app')
+@section('title','BUKU')
 
 @section('content')
+  <!-- SECTION TAMPIL DATA START -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -75,9 +77,11 @@
     </div>
     <!-- /.container-fluid -->
   </section>
+  <!-- SECTION TAMPIL DATA END -->
 
+  <!-- FORM TAMBAH DATA START -->
   <div class="modal fade" id="modal-create">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Tambah Data Buku</h4>
@@ -156,7 +160,9 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+  <!-- FORM TAMBAH DATA END -->
 
+  <!-- HAPUS DATA START -->
   @foreach ($buku as $b)
     <div class="modal fade" id="modal-delete{{ $b->id }}">
       <div class="modal-dialog">
@@ -185,10 +191,12 @@
     </div>
     <!-- /.modal -->
   @endforeach
+  <!-- HAPUS DATA END -->
 
+  <!-- UPDATE DATA START -->
   @foreach($buku as $b)
     <div class="modal fade" id="modal-update{{ $b->id }}">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Sunting Data Buku</h4>
@@ -269,6 +277,7 @@
     </div>
     <!-- /.modal -->
   @endforeach
+  <!-- UPDATE DATA START -->
 
 
 @endsection
