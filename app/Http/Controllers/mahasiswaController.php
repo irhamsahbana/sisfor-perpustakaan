@@ -55,7 +55,7 @@ class MahasiswaController extends Controller
         ]);
 
         return redirect()->route('mahasiswa.content')->with([
-            'f_bg' => 'bg-success',
+            'f_bg' => 'success',
             'f_title' => 'Tambah data sukses.',
             'f_msg' => 'Data mahasiswa berhasil ditambahkan.',
         ]);
@@ -110,12 +110,26 @@ class MahasiswaController extends Controller
 
     public function delete($id)
     {
-        DB::table('mahasiswa')->where('id', $id)->delete();
+        try {
+            DB::table('mahasiswa')->where('id', $id)->delete();
+            return redirect()->route('mahasiswa.content')->with([
+                'f_bg' => 'success',
+                'f_title' => 'Hapus data sukses.',
+                'f_msg' => 'Data mahasiswa berhasil dihapus.',
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->route('mahasiswa.content')->with([
+                'f_bg' => 'danger',
+                'f_title' => 'Hapus data gagal.',
+                'f_msg' => 'Data mahasiswa gagal dihapus.',
+            ]);
+        }
+        // DB::table('mahasiswa')->where('id', $id)->delete();
 
-        return redirect()->route('mahasiswa.content')->with([
-            'f_bg' => 'bg-danger',
-            'f_title' => 'Hapus data sukses.',
-            'f_msg' => 'Data mahasiswa berhasil dihapus.',
-        ]);
+        // return redirect()->route('mahasiswa.content')->with([
+        //     'f_bg' => 'danger',
+        //     'f_title' => 'Hapus data sukses.',
+        //     'f_msg' => 'Data mahasiswa berhasil dihapus.',
+        // ]);
     }
 }

@@ -16,6 +16,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              @include('layouts.alert-message')
               <table id="example1" class="table table-bordered tjable-striped">
                 <thead>
                   <tr>
@@ -96,7 +97,7 @@
                   <select class="form-control" name="id_mahasiswa">
                     <option value="">-- Pilih Salah satu --</option>
                     @foreach($mahasiswa as $mhs)
-                      <option value="{{ $mhs->id }}" {{ old('id_mahasiswa') == $mhs->id ? "selected":""}}>{{ $mhs->nama }}</option>
+                      <option value="{{ $mhs->id }}" {{ old('id_mahasiswa') == $mhs->id ? "selected":""}}>{{ $mhs->nama }}</option> <!-- catatn: ini adalah cara membuat value default -->
                     @endforeach
                   </select>
                 </div>

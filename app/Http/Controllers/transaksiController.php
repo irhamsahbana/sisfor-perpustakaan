@@ -16,8 +16,9 @@ class TransaksiController extends Controller
         $transaksi = DB::table('transaksi')
         ->leftJoin('mahasiswa', 'mahasiswa.id', '=', 'transaksi.id_mahasiswa')
         ->leftJoin('buku', 'buku.id', '=', 'transaksi.id_buku')
-        ->select('transaksi.id', 'transaksi.id_mahasiswa', 'transaksi.id_buku', 'transaksi.tanggal_pinjam', 'transaksi.tanggal_kembali', 'transaksi.status_pinjam', 'transaksi.total_biaya', 'mahasiswa.nama', 'buku.judul_buku')
+        ->select('transaksi.*', 'mahasiswa.nama', 'buku.judul_buku')
         ->get();
+        
         return view('contents.transaksi', compact('transaksi', 'mahasiswa', 'buku'));
     }
 
@@ -67,30 +68,30 @@ class TransaksiController extends Controller
             'status_pinjam.required' => 'Status pinjam tidak boleh kosong.',
             'total_biaya.required' => 'Total Biaya tidak boleh kosong.',
         ]);
-        $borrowDate = date_create($request->tanggal_pinjam);
+        $borrowDate = date_create($request->tanggal_pinjam); //fungsi ini untuk mengubah format tanggal
 
-        $transaksi_lama = DB::table('transaksi')->where('id', $id)->first();
+        $transaksi_lama = DB::table('transaksi')->where('id', $id)->first(); //mengambil data transaksi yang akan di update dari database
         
-        if(!empty($request->tanggal_kembali) && $request->status_pinjam == 1){
-            $returnDate = date_create($request->tanggal_kembali);
-            $diff  = date_diff( $borrowDate, $returnDate );
+        if(!empty($request->tanggal_kembali) && $request->status_pinjam == 1){ //catatan: jika status pinjam = 1, maka tanggal kembali tidak boleh kosong dan harus berupa tanggal yang benar (tanggal_kembali harus lebih besar dari tanggal_pinjam) 
+            $returnDate = date_create($request->tanggal_kembali); //fungsi ini untuk mengubah format tanggal kembali dari frontend ke format yang bisa di input ke database
+            $diff  = date_diff( $borrowDate, $returnDate ); //fungsi ini untuk menghitung selisih tanggal antara tanggal pinjam dan tanggal kembali
             
-            $buku_dipinjam = DB::table('buku')->where('id', $request->id_buku)->first();
-            $totalBiaya = $buku_dipinjam->biaya_sewa_harian * ($diff->format('%a'));
+            $buku_dipinjam = DB::table('buku')->where('id', $request->id_buku)->first(); // mengambil data buku yang dipinjam dari database
+            $totalBiaya = $buku_dipinjam->biaya_sewa_harian * ($diff->format('%a')); // menghitung biaya sewa per hari dari data buku yang dipinjam
 
 
-            $transaksi_lama = DB::table('transaksi')->where('id', $id)->first();
+            // $transaksi_lama = DB::table('transaksi')->where('id', $id)->first();
             $buku_lama = DB::table('buku')->where('id', $transaksi_lama->id_buku)->first();
 
-            if($transaksi_lama->id_buku == $request->id_buku) {
+            if($transaksi_lama->id_buku == $request->id_buku) { //catatan: jika id_buku tidak berubah, maka tidak perlu update stok buku. dan jika id_buku berubah, maka perlu update stok buku. 
                 DB::table('buku')->where('id', $request->id_buku)->update(['stok_buku' => $buku_lama->stok_buku + 1]);
             }
 
-            DB::table('transaksi')->where('id', $id)->update([
+            DB::table('transaksi')->where('id', $id)->update([ //berfungsi untuk mengupdate data transaksi yang lama dengan data baru.
                 'id_mahasiswa' => $request->id_mahasiswa,
                 'id_buku' => $request->id_buku,
-                'tanggal_pinjam' => date_format($borrowDate,"Y/m/d H:i:s"),
-                'tanggal_kembali' => date_format($returnDate,"Y/m/d H:i:s"),
+                'tanggal_pinjam' => $borrowDate,
+                'tanggal_kembali' => $returnDate,
                 'status_pinjam' => 1,
                 'total_biaya' => $totalBiaya,
             ]);

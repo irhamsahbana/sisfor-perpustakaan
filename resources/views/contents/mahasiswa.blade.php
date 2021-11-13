@@ -16,6 +16,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              @include('layouts.alert-message')
               <table id="example1" class="table table-bordered tjable-striped">
                 <thead>
                   <tr>

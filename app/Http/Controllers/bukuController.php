@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; // Mengambil namespace App\Http\Controllers
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request; // untuk menggunakan request dari laravel framework 
+use Illuminate\Support\Facades\DB; // untuk menggunakan DB dari laravel framework
 
-class BukuController extends Controller
+class BukuController extends Controller //catatan 
 {
     public function index()
     {
@@ -101,12 +101,19 @@ class BukuController extends Controller
 
     public function delete($id)
     {
-        DB::table('buku')->where('id', $id)->delete();
-
-        return redirect()->route('buku.content')->with([
-            'f_bg' => 'bg-danger',
-            'f_title' => 'Hapus data sukses.',
-            'f_msg' => 'Data buku berhasil dihapus.',
-        ]);
+        try { // try untuk menghandle error exception ketika data tidak ditemukan pada database atau sedang dipakai oleh tabel lain.
+            DB::table('buku')->where('id', $id)->delete();
+            return redirect()->route('buku.content')->with([
+                'f_bg' => 'bg-success',
+                'f_title' => 'Hapus data sukses.',
+                'f_msg' => 'Data buku berhasil dihapus.',
+            ]);
+        } catch (\Exception $e) { // catch untuk menangani error exception ketika data tidak ditemukan pada database atau sedang dipakai oleh tabel lain.
+            return redirect()->route('buku.content')->with([
+                'f_bg' => 'bg-danger',
+                'f_title' => 'Hapus data gagal.',
+                'f_msg' => 'Data buku gagal dihapus.',
+            ]);
+        }
     }
 }
