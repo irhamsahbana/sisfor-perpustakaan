@@ -92,14 +92,14 @@
               <div class="form-group row">
                 <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-10">
-                  <input type="text" id="nama" name="nama" class="form-control" value="{{ old('nama') }}">
+                  <input type="text" id="nama" name="nama" class="form-control"  value="{{ old('nama') }}">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="nim" class="col-sm-2 col-form-label">NIM</label>
                 <div class="col-sm-10">
-                  <input type="text" id="nim" name="nim" class="form-control" value="{{ old('nim') }}">
+                  <input type="text" id="nim" name="nim" class="form-control"  value="{{ old('nim') }}">
                 </div>
               </div>
 
@@ -110,7 +110,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     </div>
-                    <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
+                    <input type="text" id="email" name="email" class="form-control"  value="{{ old('email') }}">
                   </div>
                 </div>
               </div>
@@ -122,7 +122,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-phone"></i></span>
                     </div>
-                    <input type="number" id="no_telp" name="no_telp" class="form-control" value="{{ old('no_telp') }}">
+                    <input type="number" id="no_telp" name="no_telp" class="form-control"  value="{{ old('no_telp') }}">
                   </div>
                 </div>
               </div>

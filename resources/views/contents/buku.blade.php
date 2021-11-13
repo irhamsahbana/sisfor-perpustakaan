@@ -210,56 +210,56 @@
             <div class="modal-body">
               {{-- <div class="card-body"> --}}
                 <div class="form-group row">
-                  <label for="judul_buku" class="col-sm-2 col-form-label">Judul Buku</label>
-                  <div class="col-sm-10">
+                  <label for="judul_buku" class="col-sm-3 col-form-label">Judul Buku</label>
+                  <div class="col-sm-9">
                     <input type="text" id="judul_buku" name="judul_buku" class="form-control" value="{{ $b->judul_buku }}">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="pengarang" class="col-sm-2 col-form-label">Pengarang</label>
-                  <div class="col-sm-10">
+                  <label for="pengarang" class="col-sm-3 col-form-label">Pengarang</label>
+                  <div class="col-sm-9">
                     <input type="text" id="pengarang" name="pengarang" class="form-control" value="{{ $b->pengarang }}">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="penerbit" class="col-sm-2 col-form-label">Penerbit</label>
-                  <div class="col-sm-10">
+                  <label for="penerbit" class="col-sm-3 col-form-label">Penerbit</label>
+                  <div class="col-sm-9">
                     <input type="text" id="penerbit" name="penerbit" class="form-control" value="{{ $b->penerbit }}">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="tahun_terbit" class="col-sm-2 col-form-label">tahun_terbit</label>
-                  <div class="col-sm-10">
+                  <label for="tahun_terbit" class="col-sm-3 col-form-label">Tahun Terbit</label>
+                  <div class="col-sm-9">
                     <input type="date" id="tahun_terbit" name="tahun_terbit" class="form-control" value="{{ $b->tahun_terbit }}">
                   </div>
                 </div>
                 
                 <div class="form-group row">
-                  <label for="tebal" class="col-sm-2 col-form-label">tebal</label>
-                  <div class="col-sm-10">
+                  <label for="tebal" class="col-sm-3 col-form-label">Tebal</label>
+                  <div class="col-sm-9">
                     <input type="text" id="tebal" name="tebal" class="form-control" value="{{ $b->tebal }}">
                   </div>
                 </div>
                 
                 <div class="form-group row">
-                  <label for="isbn" class="col-sm-2 col-form-label">isbn</label>
-                  <div class="col-sm-10">
+                  <label for="isbn" class="col-sm-3 col-form-label">ISBN</label>
+                  <div class="col-sm-9">
                     <input type="text" id="isbn" name="isbn" class="form-control" value="{{ $b->isbn }}">
                   </div>
                 </div>
                 
                 <div class="form-group row">
-                  <label for="stok_buku" class="col-sm-2 col-form-label">stok_buku</label>
-                  <div class="col-sm-10">
+                  <label for="stok_buku" class="col-sm-3 col-form-label">Stok Buku</label>
+                  <div class="col-sm-9">
                     <input type="number" id="stok_buku" name="stok_buku" class="form-control" value="{{ $b->stok_buku }}">
                   </div>
                 </div>
                 <div class="form-group row">
-                    <label for="biaya_sewa_harian" class="col-sm-2 col-form-label">biaya_sewa_harian</label>
-                    <div class="col-sm-10">
+                    <label for="biaya_sewa_harian" class="col-sm-3 col-form-label">Biaya Sewa Harian</label>
+                    <div class="col-sm-9">
                       <input type="number" id="biaya_sewa_harian" name="biaya_sewa_harian" class="form-control" value="{{ $b->biaya_sewa_harian }}">
                     </div>
                   </div>
